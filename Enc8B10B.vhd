@@ -5,18 +5,18 @@
 -- Create Date	: 02/23/2005
 -- Design Name	: 
 -- Module Name	: ENC8B10B - RTL
--- Project Name	: DSP Application
+-- Project Name	: Fiber Optic Application
 --
 -- Revision
--- Revision 0.01 - File Created
--- Comments		: General ENC8B10B
+-- Revision 0.01 - File Created.
+--          1.00 - publishing on the opencores.org.
+--          1.01 - eliminate needing the VECTLIB.vhd in the original revision.(20110424)
 --
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
-use work.vect_pack.ALL;
 
 entity ENC8B10B is
 	port
@@ -28,10 +28,6 @@ entity ENC8B10B is
 		RUNDP_OUT : out STD_LOGIC;
 		ENCODE_OUT : out STD_LOGIC_VECTOR(9 downto 0)
 	);
-attribute FAST : string;
-attribute SLOW : string;
-attribute FAST of ENC8B10B : entity is "TRUE";
-attribute SLOW of ENC8B10B : entity is "FALSE";	
 end ENC8B10B;
 
 architecture RTL of ENC8B10B is
@@ -1104,8 +1100,6 @@ constant DEC_K27D7 : std_logic_vector := "11111011";	-- K27.7
 constant DEC_K29D7 : std_logic_vector := "11111101";	-- K29.7
 constant DEC_K30D7 : std_logic_vector := "11111110";	-- K30.7
 
-
-
 signal ENCODE : std_logic_vector (10 downto 0);
 begin
 
@@ -1117,9 +1111,8 @@ begin
 		if (CLK_IN='1' and CLK_IN'event)
 		then
 			ENCODE <= TBL_ENC8b10b(conv_integer(CTRL_IN & ((not RUNDP_RESET_IN) and ENCODE(10)) & DATA_IN));
-			--ENCODE <=ENC_K28D5R0;
-			--ENCODE <= '0' & CTRL_IN & ENCODE(10) & DATA_IN;
 		end if;
 	end process;
+
 end RTL;
 

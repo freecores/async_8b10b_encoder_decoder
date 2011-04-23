@@ -5,18 +5,18 @@
 -- Create Date	: 02/23/2005
 -- Design Name	: 
 -- Module Name	: DEC8B10B - RTL
--- Project Name	: DSP Application
+-- Project Name	: Fiber Optic Application
 --
 -- Revision
 -- Revision 0.01 - File Created
--- Comments		: General DEC8B10B
+--          1.00 - publishing on the opencores.org
+--          1.01 - eliminate needing the VECTLIB.vhd in the original revision.(20110424)
 --
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
-use work.vect_pack.ALL;
 
 entity DEC8B10B is
 	port
@@ -26,10 +26,6 @@ entity DEC8B10B is
 		CTRL_OUT : out STD_LOGIC;
 		DATA_OUT : out STD_LOGIC_VECTOR(7 downto 0)
 	);
---attribute FAST : string;
---attribute SLOW : string;
---attribute FAST of DEC8B10B : entity is "TRUE";
---attribute SLOW of DEC8B10B : entity is "FALSE";	
 end DEC8B10B;
 
 architecture RTL of DEC8B10B is
